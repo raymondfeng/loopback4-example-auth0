@@ -61,16 +61,17 @@
   },
   "devDependencies": {
     "@loopback/build": "^2.0.13",
-    "source-map-support": "^0.5.13",
+    "@loopback/eslint-config": "^4.1.1",
     "@loopback/testlab": "^1.9.1",
     "@types/node": "^10.14.19",
-    "@typescript-eslint/parser": "^2.3.1",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
-    "@loopback/eslint-config": "^4.1.1",
+    "@typescript-eslint/parser": "^2.3.1",
     "eslint": "^6.4.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-eslint-plugin": "^2.1.0",
     "eslint-plugin-mocha": "^6.1.1",
+    "request": "^2.88.0",
+    "source-map-support": "^0.5.13",
     "typescript": "~3.6.3"
   }
 }
