@@ -1,0 +1,76 @@
+{
+  "name": "loopback4-example-auth0",
+  "version": "1.0.0",
+  "description": "loopback4-example-auth0",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.9"
+  },
+  "scripts": {
+    "build": "lb-tsc",
+    "build:watch": "lb-tsc --watch",
+    "clean": "lb-clean dist *.tsbuildinfo",
+    "lint": "npm run prettier:check && npm run eslint",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "lb-eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "pretest": "npm run clean && npm run build",
+    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
+    "posttest": "npm run lint",
+    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
+    "docker:build": "docker build -t loopback4-example-auth0 .",
+    "docker:run": "docker run -p 3000:3000 -d loopback4-example-auth0",
+    "migrate": "node ./dist/migrate",
+    "prestart": "npm run build",
+    "start": "node -r source-map-support/register .",
+    "prepublishOnly": "npm run test"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "",
+  "files": [
+    "README.md",
+    "index.js",
+    "index.d.ts",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "dependencies": {
+    "@loopback/authentication": "^3.1.1",
+    "@loopback/boot": "^1.5.8",
+    "@loopback/context": "^1.23.2",
+    "@loopback/core": "^1.10.4",
+    "@loopback/openapi-v3": "^1.9.9",
+    "@loopback/repository": "^1.15.1",
+    "@loopback/rest": "^1.20.1",
+    "@loopback/rest-explorer": "^1.4.1",
+    "@loopback/service-proxy": "^1.3.8",
+    "express-jwt": "^5.3.1",
+    "express-jwt-authz": "^2.3.1",
+    "jwks-rsa": "^1.6.0"
+  },
+  "devDependencies": {
+    "@loopback/build": "^2.0.13",
+    "source-map-support": "^0.5.13",
+    "@loopback/testlab": "^1.9.1",
+    "@types/node": "^10.14.19",
+    "@typescript-eslint/parser": "^2.3.1",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@loopback/eslint-config": "^4.1.1",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-eslint-plugin": "^2.1.0",
+    "eslint-plugin-mocha": "^6.1.1",
+    "typescript": "~3.6.3"
+  }
+}
