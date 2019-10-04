@@ -13,6 +13,7 @@ import {JWTAuthenticationStrategy} from './authentication-strategies/auth0';
 import {
   registerAuthenticationStrategy,
   AuthenticationComponent,
+  AuthenticationBindings,
 } from '@loopback/authentication';
 
 export class Loopback4ExampleAuth0Application extends BootMixin(
@@ -24,10 +25,19 @@ export class Loopback4ExampleAuth0Application extends BootMixin(
     // Bind authentication component related elements
     this.component(AuthenticationComponent);
 
+    // Register the Auth0 JWT authentication strategy
+    registerAuthenticationStrategy(this, JWTAuthenticationStrategy);
+    this.configure(
+      `${AuthenticationBindings.AUTHENTICATION_STRATEGY_EXTENSION_POINT_NAME}.JWTAuthenticationStrategy`,
+    ).to({
+      jwksUri: 'https://apitoday.auth0.com/.well-known/jwks.json',
+      audience: 'http://localhost:3000/ping',
+      issuer: 'https://apitoday.auth0.com/',
+      algorithms: ['RS256'],
+    });
+
     // Set up the custom sequence
     this.sequence(MySequence);
-
-    registerAuthenticationStrategy(this, JWTAuthenticationStrategy);
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
