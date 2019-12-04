@@ -38,11 +38,11 @@ export class Loopback4ExampleAuth0Application extends BootMixin(
     // Bind authentication component related elements
     this.component(AuthenticationComponent);
 
+    this.service(JWTServiceProvider);
+
     // Register the Auth0 JWT authentication strategy
     registerAuthenticationStrategy(this, JWTAuthenticationStrategy);
-    this.configure(
-      `${AuthenticationBindings.AUTHENTICATION_STRATEGY_EXTENSION_POINT_NAME}.JWTAuthenticationStrategy`,
-    ).to({
+    this.configure(KEY).to({
       jwksUri: 'https://apitoday.auth0.com/.well-known/jwks.json',
       audience: 'http://localhost:3000/ping',
       issuer: 'https://apitoday.auth0.com/',
