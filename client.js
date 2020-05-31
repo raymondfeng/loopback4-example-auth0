@@ -1,4 +1,4 @@
-const request = require('request');
+const axios = require('axios');
 
 /**
  * Please add `auth0-secret.json` for your credentials
@@ -20,8 +20,8 @@ const tokenReq = {
   method: 'POST',
   url: 'https://apitoday.auth0.com/oauth/token',
   headers: {'content-type': 'application/json'},
-  json: true,
-  body: {
+  responseType: 'json',
+  data: {
     ...secrets,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     grant_type: 'client_credentials',
@@ -29,10 +29,9 @@ const tokenReq = {
   },
 };
 
-request(tokenReq, function (tokenError, response, body) {
-  if (tokenError) throw new Error(tokenError);
-
-  console.log(body);
+async function main() {
+  let res = await axios(tokenReq);
+  console.log(res.data);
 
   /**
    * Now try to run the /greet api using the access token
@@ -41,13 +40,16 @@ request(tokenReq, function (tokenError, response, body) {
     method: 'GET',
     url: 'http://localhost:3000/greet',
     headers: {
-      authorization: `Bearer ${body.access_token}`,
+      authorization: `Bearer ${res.data.access_token}`,
     },
   };
 
-  request(greetReq, function (greetError, response2, user) {
-    if (greetError) throw new Error(greetError);
+  res = await axios(greetReq);
 
-    console.log(user);
-  });
+  console.log(res.data);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
 });
