@@ -1,5 +1,10 @@
 import {inject} from '@loopback/context';
-import {Response, Request, RestBindings} from '@loopback/rest';
+import {
+  Response,
+  Request,
+  RestBindings,
+  ExpressRequestHandler,
+} from '@loopback/rest';
 import {
   AuthenticationStrategy,
   AuthenticationBindings,
@@ -7,7 +12,6 @@ import {
 } from '@loopback/authentication';
 import {UserProfile} from '@loopback/security';
 
-import * as jwt from 'express-jwt';
 import {JWT_SERVICE} from './types';
 const jwtAuthz = require('express-jwt-authz');
 
@@ -20,12 +24,12 @@ export class JWTAuthenticationStrategy implements AuthenticationStrategy {
     @inject(AuthenticationBindings.METADATA)
     private metadata: AuthenticationMetadata,
     @inject(JWT_SERVICE)
-    private jwtCheck: jwt.RequestHandler,
+    private jwtCheck: ExpressRequestHandler,
   ) {}
 
   async authenticate(request: Request): Promise<UserProfile | undefined> {
     return new Promise<UserProfile | undefined>((resolve, reject) => {
-      this.jwtCheck(request, this.response, (err?: Error) => {
+      this.jwtCheck(request, this.response, (err: unknown) => {
         if (err) {
           console.error(err);
           reject(err);

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 const request = require('request');
 
 /**
@@ -24,12 +23,13 @@ const tokenReq = {
   json: true,
   body: {
     ...secrets,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     grant_type: 'client_credentials',
     scope: 'greet',
   },
 };
 
-request(tokenReq, function(tokenError, response, body) {
+request(tokenReq, function (tokenError, response, body) {
   if (tokenError) throw new Error(tokenError);
 
   console.log(body);
@@ -45,7 +45,7 @@ request(tokenReq, function(tokenError, response, body) {
     },
   };
 
-  request(greetReq, function(greetError, response2, user) {
+  request(greetReq, function (greetError, response2, user) {
     if (greetError) throw new Error(greetError);
 
     console.log(user);

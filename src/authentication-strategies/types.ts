@@ -1,5 +1,5 @@
 import {BindingKey} from '@loopback/context';
-import jwt = require('express-jwt');
+import jwt from 'express-jwt';
 import {
   AuthenticationStrategy,
   AuthenticationBindings,

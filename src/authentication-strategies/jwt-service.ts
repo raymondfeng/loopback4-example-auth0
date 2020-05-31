@@ -5,13 +5,13 @@ import {
   BindingScope,
   ContextTags,
 } from '@loopback/context';
-import * as jwt from 'express-jwt';
+import jwt, {RequestHandler} from 'express-jwt';
 import {KEY, Auth0Config, JWT_SERVICE} from './types';
 
 const jwks = require('jwks-rsa');
 
 @bind({tags: {[ContextTags.KEY]: JWT_SERVICE}, scope: BindingScope.SINGLETON})
-export class JWTServiceProvider implements Provider<jwt.RequestHandler> {
+export class JWTServiceProvider implements Provider<RequestHandler> {
   constructor(
     @config({fromBinding: KEY})
     private options: Auth0Config,
@@ -32,7 +32,7 @@ export class JWTServiceProvider implements Provider<jwt.RequestHandler> {
       algorithms: auth0Config.algorithms || ['RS256'],
       // Customize `getToken` to allow `access_token` query string in addition
       // to `Authorization` header
-      getToken: req => {
+      getToken: (req) => {
         if (
           req.headers.authorization &&
           req.headers.authorization.split(' ')[0] === 'Bearer'
