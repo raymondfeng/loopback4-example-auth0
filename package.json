@@ -56,7 +56,7 @@
     "@loopback/rest-explorer": "^2.2.3",
     "@loopback/service-proxy": "^2.3.1",
     "axios": "^0.19.2",
-    "express-jwt": "^5.3.3",
+    "express-jwt": "^6.0.0",
     "express-jwt-authz": "^2.3.1",
     "jwks-rsa": "^1.8.0"
   },
