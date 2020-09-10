@@ -1,12 +1,12 @@
 import {
-  config,
-  Provider,
   bind,
   BindingScope,
+  config,
   ContextTags,
-} from '@loopback/context';
+  Provider,
+} from '@loopback/core';
 import jwt, {RequestHandler} from 'express-jwt';
-import {KEY, Auth0Config, JWT_SERVICE} from './types';
+import {Auth0Config, JWT_SERVICE, KEY} from './types';
 
 const jwks = require('jwks-rsa');
 

@@ -1,18 +1,18 @@
-import {inject} from '@loopback/context';
 import {
-  Response,
-  Request,
-  RestBindings,
-  ExpressRequestHandler,
-} from '@loopback/rest';
-import {
-  AuthenticationStrategy,
   AuthenticationBindings,
   AuthenticationMetadata,
+  AuthenticationStrategy,
 } from '@loopback/authentication';
+import {inject} from '@loopback/core';
+import {
+  ExpressRequestHandler,
+  Request,
+  Response,
+  RestBindings,
+} from '@loopback/rest';
 import {UserProfile} from '@loopback/security';
-
 import {JWT_SERVICE} from './types';
+
 const jwtAuthz = require('express-jwt-authz');
 
 export class JWTAuthenticationStrategy implements AuthenticationStrategy {

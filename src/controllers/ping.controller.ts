@@ -1,7 +1,7 @@
-import {Request, RestBindings, get, ResponseObject} from '@loopback/rest';
-import {inject} from '@loopback/context';
 import {authenticate} from '@loopback/authentication';
-import {SecurityBindings, UserProfile, securityId} from '@loopback/security';
+import {inject} from '@loopback/core';
+import {get, Request, ResponseObject, RestBindings} from '@loopback/rest';
+import {SecurityBindings, securityId, UserProfile} from '@loopback/security';
 
 /**
  * OpenAPI response for ping()
@@ -73,15 +73,16 @@ export class PingController {
       },
     },
   })
-  @authenticate('auth0-jwt', {scopes: ['greet']})
+  @authenticate({strategy: 'auth0-jwt', options: {scopes: ['greet']}})
   async greet(
     @inject(SecurityBindings.USER)
     currentUserProfile: UserProfile,
-  ): Promise<UserProfile> {
+  ): Promise<Partial<UserProfile>> {
     // (@jannyHou)FIXME: explore a way to generate OpenAPI schema
     // for symbol property
     currentUserProfile.id = currentUserProfile[securityId];
-    delete currentUserProfile[securityId];
-    return currentUserProfile;
+    const user: Partial<UserProfile> = {...currentUserProfile};
+    delete user[securityId];
+    return user;
   }
 }

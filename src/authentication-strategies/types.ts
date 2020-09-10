@@ -1,9 +1,9 @@
-import {BindingKey} from '@loopback/context';
-import jwt from 'express-jwt';
 import {
-  AuthenticationStrategy,
   AuthenticationBindings,
+  AuthenticationStrategy,
 } from '@loopback/authentication';
+import {BindingKey} from '@loopback/core';
+import jwt from 'express-jwt';
 
 export interface Auth0Config {
   jwksUri: string; // 'https://apitoday.auth0.com/.well-known/jwks.json',

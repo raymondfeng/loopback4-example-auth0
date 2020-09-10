@@ -7,6 +7,7 @@
     "loopback"
   ],
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=8.9"
   },
@@ -35,8 +36,8 @@
   "repository": {
     "type": "git"
   },
-  "author": "",
-  "license": "",
+  "author": "Raymond Feng <enjoyjava@gmail.com>",
+  "license": "MIT",
   "files": [
     "README.md",
     "index.js",
@@ -46,33 +47,31 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/authentication": "^4.2.6",
-    "@loopback/boot": "^2.3.2",
-    "@loopback/context": "^3.8.2",
-    "@loopback/core": "^2.7.1",
-    "@loopback/openapi-v3": "^3.4.2",
-    "@loopback/repository": "^2.6.0",
-    "@loopback/rest": "^5.1.0",
-    "@loopback/rest-explorer": "^2.2.3",
-    "@loopback/service-proxy": "^2.3.1",
-    "axios": "^0.19.2",
+    "@loopback/authentication": "^6.0.1",
+    "@loopback/boot": "^2.5.1",
+    "@loopback/core": "^2.9.5",
+    "@loopback/repository": "^2.11.2",
+    "@loopback/rest": "^6.2.0",
+    "@loopback/rest-explorer": "^2.2.10",
+    "@loopback/service-proxy": "^2.3.8",
+    "axios": "^0.20.0",
     "express-jwt": "^6.0.0",
-    "express-jwt-authz": "^2.3.1",
-    "jwks-rsa": "^1.8.0"
+    "express-jwt-authz": "^2.4.1",
+    "jwks-rsa": "^1.9.0"
   },
   "devDependencies": {
-    "@loopback/build": "^5.4.2",
-    "@loopback/eslint-config": "^8.0.0",
-    "@loopback/testlab": "^3.1.6",
-    "@types/node": "^10.17.24",
-    "@typescript-eslint/eslint-plugin": "^3.0.2",
-    "@typescript-eslint/parser": "^3.0.2",
-    "eslint": "^7.1.0",
+    "@loopback/build": "^6.2.2",
+    "@loopback/eslint-config": "^9.0.2",
+    "@loopback/testlab": "^3.2.4",
+    "@types/node": "^10.17.28",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-eslint-plugin": "^2.2.1",
-    "eslint-plugin-mocha": "^7.0.0",
+    "eslint-plugin-eslint-plugin": "^2.3.0",
+    "eslint-plugin-mocha": "^8.0.0",
     "request": "^2.88.2",
     "source-map-support": "^0.5.19",
-    "typescript": "~3.9.3"
+    "typescript": "~4.0.2"
   }
 }
